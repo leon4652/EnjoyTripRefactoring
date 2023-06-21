@@ -1,7 +1,7 @@
 <template>
     <div>
       <nav-bar></nav-bar>
-      안녕하세요. homeview입니다.
+      테스트 뷰 입니다.
       
       
     </div>
