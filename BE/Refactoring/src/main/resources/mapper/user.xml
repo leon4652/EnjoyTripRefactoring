@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sas.refactoring.user.mapper.UserMapper">
+    
+    <resultMap id="userResultMap" type="com.sas.refactoring.user.dto.UserDto">
+        <result property="userNo" column="user_no"/>
+        <result property="userId" column="user_id"/>
+        <result property="userPw" column="user_pw"/>
+        <result property="userName" column="user_name"/>
+        <result property="userEmail" column="user_email"/>
+        <result property="isAdmin" column="is_admin"/>
+        <!-- 필요한 다른 프로퍼티들 -->
+    </resultMap>
+    
+    <select id="checkLogin" resultMap="userResultMap">
+        select *
+          from user
+         where user_id = #{list[0]} and user_pw = #{list[1]}
+    </select>
+
+    <insert id="registerUser">
+        insert into user(user_id, user_pw,user_name,user_email)
+        values (#{list[0]}, #{list[1]}, #{list[2]}, #{list[3]})
+    </insert>
+
+    <select id="checkDuplicate" resultType="java.lang.Boolean">
+        select count(*)
+          from user
+         where ${list[0]} = #{list[1]}
+    </select>
+</mapper>
