@@ -13,3 +13,6 @@ myfolder/*.log
 
 #node_module 무시
 FE/vue-project/node_modules/
+
+#application properties
+BE/Refactoring/src/main/resources/application.properties

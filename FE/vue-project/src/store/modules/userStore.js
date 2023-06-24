@@ -33,6 +33,7 @@ const userStore = {
         console.error(error);
       }
     },
+
     logout({ commit }) {
       // 로그아웃 처리 로직
       commit("setLoggedIn", false);
@@ -65,8 +66,22 @@ const userStore = {
       } catch (error) {
         console.error(error);
       }
-      
-    }
+    },
+
+    sendMail() {
+      const data = ["id", "사용자 이름", "syhfqq1810@gmail.com"];
+      fetchLoader.post("mail/sendcheck", data)
+          .then(response => {
+              if(response.status === 200) {
+                  console.log("메일 발송 성공");
+              } else {
+                  console.log("메일 발송 실패");
+              }
+          })
+          .catch(error => {
+              console.error(error);
+          });
+  },
   },
 };
 
