@@ -62,9 +62,16 @@ export default {
         else alert("중복된 이름입니다.") 
         return;
       }
+      //3. 이메일 형식 체크
+      if(this.email.length < 7 || !this.email.includes('@')) {
+        alert("잘못된 이메일 형식입니다.")
+      }
+
       //등록 로직
       try {
             await this.register({ id: this.id, password: this.password, email: this.email, name: this.name })
+            alert("회원 가입을 완료하였습니다!")
+            this.$router.push("/");
           }
        catch (error) {
         console.error(error);

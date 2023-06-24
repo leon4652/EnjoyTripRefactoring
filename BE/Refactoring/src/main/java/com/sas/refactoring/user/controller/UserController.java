@@ -31,4 +31,6 @@ public class UserController {
     public boolean checkDuplicate(@RequestBody List<String> data) throws Exception {
         return userService.checkDuplicate(data);
     }
+
+
 }
