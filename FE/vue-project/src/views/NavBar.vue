@@ -4,6 +4,7 @@
       <router-link to="/">HOME</router-link> |
       <router-link to="/test">TEST</router-link> |
       <router-link to="/login">로그인</router-link> |
+      <router-link to="/freeboard">자유게시판</router-link>
     </div>
     <div class = "my-page-min">
       <my-page-min></my-page-min>
