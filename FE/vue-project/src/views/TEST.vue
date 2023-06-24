@@ -1,6 +1,5 @@
 <template>
     <div>
-      <nav-bar></nav-bar>
       테스트 뷰 입니다.
       
       
@@ -8,11 +7,9 @@
   </template>
   
   <script>
-  import NavBar from './NavBar.vue';
   
   export default {
-    name: 'HomeView',
-    components: { NavBar },
+    components: {  },
   };
   </script>
   <style scoped>

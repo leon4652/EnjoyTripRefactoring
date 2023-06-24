@@ -2,7 +2,7 @@
 
 <template>
   <div>
-    <div class="outer-container">
+    <div class="outer-container-login">
       <h2>Login</h2>
       <input type="text" v-model="id" placeholder="Id" />
       <input type="password" v-model="password" placeholder="Password" />
@@ -29,18 +29,24 @@
       };
     },
     computed: {
-      ...mapState("userStore", ["loggedIn"]),
+      ...mapState("userStore", ["loggedIn", "userInfo"]),
     },
     methods: {
       ...mapActions("userStore", ["login"]),
       async loginCheck() {
     try {
       await this.login({id : this.id, password : this.password})
+      
     } catch (error) {
       console.error(error);
     }
       if(this.loggedIn) {
+        if(this.userInfo.firstAuth == "0") {
         this.$router.push('/');
+        }
+        else {
+          this.$router.push('first-auth');
+        }
       }
       else {
         this.loginError = 'Invalid username or password.';
@@ -52,7 +58,7 @@
   </script>
   
   <style scoped>
-  .outer-container {
+  .outer-container-login {
     
     display: flex;
     flex-direction: column;

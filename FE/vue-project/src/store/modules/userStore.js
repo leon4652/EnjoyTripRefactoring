@@ -1,4 +1,5 @@
 import { apiInstance } from "@/api/http.js";
+
 const fetchLoader = apiInstance();
 
 const userStore = {
@@ -26,16 +27,13 @@ const userStore = {
         if (response.data) {
           commit("setLoggedIn", true);
           commit("setUserInfo", response.data);
+
         } else {
           commit("setLoggedIn", false);
         }
       } catch (error) {
         console.error(error);
       }
-    },
-    logout({ commit }) {
-      // 로그아웃 처리 로직
-      commit("setLoggedIn", false);
     },
 
     async register(_, { id, password, email, name }) {
@@ -44,6 +42,7 @@ const userStore = {
         const response = await fetchLoader.post("user/register", data);
         if (response.status === 200) {
           console.log("성공");
+          
         } else {
           console.log("실패");
         }
@@ -65,8 +64,24 @@ const userStore = {
       } catch (error) {
         console.error(error);
       }
+    },
+
+    async checkFirstAuthCode( {state}, { code }) {
       
-    }
+      try {
+        const data = [code, state.userInfo.userId];
+        const response = await fetchLoader.post("user/firstauth", data);
+        alert(response.data);
+        if(response.data) {
+          return true;
+        }
+        else return false;
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    
+
   },
 };
 

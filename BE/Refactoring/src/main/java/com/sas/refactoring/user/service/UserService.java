@@ -10,4 +10,8 @@ public interface UserService {
     void registerUser(List<String> data) throws Exception;
 
     boolean checkDuplicate(List<String> data) throws Exception;
+
+    boolean checkFirstAuth(List<String> data) throws Exception;
+
+    void changeAuth(String id) throws Exception;
 }
