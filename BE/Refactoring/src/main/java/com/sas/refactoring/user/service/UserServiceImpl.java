@@ -29,4 +29,14 @@ public class UserServiceImpl implements UserService {
     public boolean checkDuplicate(List<String> data) throws Exception {
         return userMapper.checkDuplicate(data);
     }
+
+    @Override
+    public boolean checkFirstAuth(List<String> data) throws Exception {
+        return userMapper.checkFirstAuth(data);
+    }
+
+    @Override
+    public void changeAuth(String id) throws Exception {
+        userMapper.changeAuth(id);
+    }
 }

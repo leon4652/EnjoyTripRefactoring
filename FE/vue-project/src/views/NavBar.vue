@@ -13,7 +13,7 @@
   
 <script>
 
-import MyPageMin from './mypage/MyPageMin.vue';
+import MyPageMin from './user/mypage/MyPageMin.vue';
 export default {
   name: 'NavBar',
   components: { MyPageMin },

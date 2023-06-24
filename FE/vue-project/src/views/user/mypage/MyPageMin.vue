@@ -26,7 +26,7 @@
   
 <script>
 
-import { mapState } from 'vuex';
+import { mapState, mapMutations } from 'vuex';
 import "@/assets/style/btn/mainBtn.css"
 export default {
     data() {
@@ -40,13 +40,15 @@ export default {
 
     },
     methods: {
-
+        ...mapMutations("userStore", ['setLoggedIn']),
+        logout() {
+            this.setLoggedIn(false);
+        }
     },
 };
 </script>
   
 <style >
-.after-login {}
 
 .outer-container {
     display: flex;
