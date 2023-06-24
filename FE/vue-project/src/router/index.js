@@ -30,9 +30,13 @@ const routes = [
   {
     path: "/mypage",
     name: "MyPage",
-    component: () => import(/* webpackChunkName: "Home" */ "@/views/mypage/MyPage.vue"),
+    component: () => import(/* webpackChunkName: "Home" */ "@/views/user/mypage/MyPage.vue"),
   },
-
+  {
+    path: "/first-auth",
+    name: "FirstAuth",
+    component: () => import(/* webpackChunkName: "Home" */ "@/views/user/UserFirstAuth.vue"),
+  },
 
 
 ];

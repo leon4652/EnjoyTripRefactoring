@@ -10,7 +10,16 @@ public class UserDto {
     String userEmail;
     LocalDateTime registDate;
     LocalDateTime removeDate;
+    String firstAuth;
     int isAdmin;
+
+    public String getFirstAuth() {
+        return firstAuth;
+    }
+
+    public void setFirstAuth(String firstAuth) {
+        this.firstAuth = firstAuth;
+    }
 
     public int getUserNo() {
         return userNo;

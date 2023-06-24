@@ -11,6 +11,7 @@
         <result property="userName" column="user_name"/>
         <result property="userEmail" column="user_email"/>
         <result property="isAdmin" column="is_admin"/>
+        <result property="firstAuth" column="first_auth"/>
         <!-- 필요한 다른 프로퍼티들 -->
     </resultMap>
     
@@ -21,8 +22,8 @@
     </select>
 
     <insert id="registerUser">
-        insert into user(user_id, user_pw,user_name,user_email)
-        values (#{list[0]}, #{list[1]}, #{list[2]}, #{list[3]})
+        insert into user(user_id, user_pw,user_name,user_email, first_auth)
+        values (#{list[0]}, #{list[1]}, #{list[2]}, #{list[3]}, #{list[4]})
     </insert>
 
     <select id="checkDuplicate" resultType="java.lang.Boolean">
@@ -30,4 +31,16 @@
           from user
          where ${list[0]} = #{list[1]}
     </select>
+
+    <select id="checkFirstAuth" resultType="java.lang.Boolean">
+        select count(*)
+          from user
+         where first_auth = #{list[0]} and user_id = #{list[1]}
+    </select>
+
+    <update id="changeAuth">
+        UPDATE user
+           SET first_auth = "0"
+         WHERE user_id = #{id};
+    </update>
 </mapper>
