@@ -37,6 +37,12 @@ const routes = [
     name: "FirstAuth",
     component: () => import(/* webpackChunkName: "Home" */ "@/views/user/UserFirstAuth.vue"),
   },
+  {
+    path: "/freeboard",
+    name: "FreeBoard",
+    component: () => import(/* webpackChunkName: "Home" */ "@/views/freeboard/FreeBoard.vue"),
+  },
+
 
 
 ];
