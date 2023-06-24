@@ -27,6 +27,13 @@ dependencies {
 
 	//STMP JAP MAIL
 	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-mail', version: '2.7.12'
+
+	//JWT
+	implementation "io.jsonwebtoken:jjwt:0.9.1"
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+
 }
 
 tasks.named('test') {
