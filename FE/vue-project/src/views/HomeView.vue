@@ -9,13 +9,11 @@
   
   <script>
   import NavBar from './NavBar.vue';
-  import { mapActions } from 'vuex';
 
   export default {
     name: 'HomeView',
     components: { NavBar },
     methods : { 
-      ...mapActions('userStore', ['sendMail']),
 
      },
   };
