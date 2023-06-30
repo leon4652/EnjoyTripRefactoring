@@ -1,8 +1,8 @@
 <template>
     <div>
       <nav-bar></nav-bar>
-      안녕하세요. homeview입니다.
-      메인 페이지입니다.
+      SSAFY - 계절학기 필수 과제
+      웹소켓 채팅 구현
       
     </div>
   </template>

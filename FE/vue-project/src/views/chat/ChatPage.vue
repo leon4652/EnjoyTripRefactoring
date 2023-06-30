@@ -2,15 +2,11 @@
   <div id="app" class="chat-container">
 
     <h1>실시간 채팅</h1>
-
     <div class="message-box">
-      <div 
-        v-for="(item, idx) in msgList" 
-        :key="idx" 
-        class="message-item"
-      >
+      <div v-for="(item, idx) in msgList" :key="idx" class="message-item" :class="{ 'highlight': item.userName === userInfo.userName && highlightEnabled }">
       [{{ formatDate(item.chatTime) }}]<strong>{{ item.userName }}: </strong> {{ item.content }}
-      </div>
+    </div>
+
     </div>
     <div class="input-area">
       <input 
@@ -20,6 +16,7 @@
         class="input-field"
       />
       <button @click="sendMessage" class="send-button">전송</button>
+      <button @click="toggleHighlight">강조</button>
       <p></p>
       <router-link to="/">
       <button>돌아가기</button>
@@ -31,19 +28,27 @@
 
 <script>
 import { mapState } from "vuex";
-import Stomp from "webstomp-client";
-import SockJS from "sockjs-client";
+import Stomp from "webstomp-client"; //Simple Text Oriented Messaging Protocol, 클라이언트와 서버 간의 메시지 교환을 위한 표준화된 프로토콜. 여기서는 메시지브로커와 연결
+import SockJS from "sockjs-client";  // WebSocket 프로토콜을 사용하여 웹 애플리케이션에서 실시간 양방향 통신을 구현하는 데 도움을 주는 자바스크립트 라이브러리 (지속 연결)
 
 export default {
   name: "ChatVue",
   data() {
     return {
       message: "",
-      msgList: []
+      msgList: [], //메시지 담긴 배열
+      highlightEnabled : false, //내 메시지 강조 표시
+      connectedUsers: 0, // 연결된 사용자 수
     };
   },
   created() {
     this.connect();
+  },
+  mounted() {
+    if (this.userInfo === null) {
+      alert('로그인 부탁드립니다.');
+      this.$router.push("/");
+    }
   },
   computed: {
     ...mapState("userStore", ["userInfo"])
@@ -90,6 +95,14 @@ export default {
             // 받은 데이터 json으로 파싱 후 리스트에 추가.
             this.msgList.push(JSON.parse(res.body));
           });
+
+        //접속자 수 정보를 받아 처리하는 subscription
+        this.stompClient.subscribe("/connected", res => {
+        console.log("Connected users update from endpoint", res.body);
+
+        // 받은 데이터를 연결된 사용자 수에 할당. (문자열을 숫자로 변환)
+        this.connectedUsers = Number(res.body);
+      });
         },
         error => {
           // 소켓 연결 실패
@@ -109,11 +122,16 @@ export default {
     // const month = date.getMonth() + 1;
     // const day = date.getDate();
     const hours = (date.getHours() + 9) % 24; //GMT + 9 
-    const minutes = date.getMinutes();
-    const seconds = date.getSeconds();
-    
+    let minutes = date.getMinutes();
+    let seconds = date.getSeconds();
+    if (minutes < 10) minutes = `0${minutes}`;
+    if (seconds < 10) seconds = `0${seconds}`;
+
     return `${hours}:${minutes}:${seconds}`;
-  },
+    },
+    toggleHighlight() { //내 메시지 강조
+      this.highlightEnabled = !this.highlightEnabled;
+    },
   }
 };
 </script>
@@ -142,7 +160,7 @@ export default {
   display: flex; /* flexbox 사용 */
   align-items: center; /* 중앙 정렬 */
 }
-
-.input-area {
+.message-item.highlight {
+  background-color: yellow;
 }
 </style>
