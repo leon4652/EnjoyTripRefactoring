@@ -4,4 +4,4 @@
 FE/vue-project/node_modules/
 
 #application properties
-application-sensitive.properties
+BE/
