@@ -1,0 +1,8 @@
+
+
+#node_module 무시
+FE/vue-project/node_modules/
+
+#application properties
+BE/Refactoring/src/main/resources/application-sch
+BE/Refactoring/src/main/resources/application-sch.properties
