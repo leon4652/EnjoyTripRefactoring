@@ -22,3 +22,5 @@ login/register 구현 완료. 중복 확인, 제한 사항 확인 및 등록
 웹소켓 세션으로 접속자 수 추가, JPA 사용하여 DB(MySQL)에 저장되게 추가.
 자세한 내용은 Chatting.md 참조
 
+~0703 : JWT 추가, Access, Refresh 발급 확인
+FE의 캐시(혹은 로컬 스토리지) 저장은 따로 되지 않음

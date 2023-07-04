@@ -1,29 +1,38 @@
 package com.sas.refactoring.user.controller;
 
+import com.sas.refactoring.jwt.JwtUtil;
 import com.sas.refactoring.mail.controller.MailController;
-import com.sas.refactoring.mail.service.MailService;
 import com.sas.refactoring.user.dto.UserDto;
 import com.sas.refactoring.user.service.MakeRandNum;
 import com.sas.refactoring.user.service.UserService;
-import org.apache.catalina.User;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Slf4j
 @CrossOrigin("*")
 @RestController
 @RequestMapping("/user")
+@RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
     private final MailController mailController;
+    private final JwtUtil jwtUtil;
 
-    public UserController(UserService userService, MailController mailController) {
-        this.userService = userService;
-        this.mailController = mailController; //메일 전송용 컨트롤러 의존성 주입
+    @GetMapping("/test")
+    public void jwtTest() {
+        //임의로 만든 jwt토큰 값을 파싱해서 해석해보겠음.
+        jwtUtil.validateToken("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoi7J2066aEIiwiaWQiOiJpZOuTpOyWtOqwkCIsImV4cCI6MTY4ODM4MzE4OCwic3ViIjoiYWNjZXNzLXRva2VuIn0.lbJwYTZ2Tdnb17cj8LHEdRXjn8RMITShGYnYPfD1trQ");
     }
 
     @PostMapping("/login")
     public UserDto login(@RequestBody List<String> data) throws Exception {
+        String RefreshToken = jwtUtil.createRefreshToken(1L);
+        log.info(RefreshToken);
+        jwtUtil.validateToken(RefreshToken); //토큰 유효한지 테스트
         return userService.checkLogin(data);
     }
 
