@@ -4,4 +4,4 @@
 FE/vue-project/node_modules/
 
 #application properties
-BE/Refactoring/
+BE/Refactoring/src/main/resources/application-sensitive
