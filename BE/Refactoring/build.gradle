@@ -24,6 +24,7 @@ dependencies {
 
 	//lombok
 	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
 
 	//JPA 의존성 추가
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
@@ -33,6 +34,12 @@ dependencies {
 
 	//spring-web-socket
 	implementation 'org.springframework.boot:spring-boot-starter-websocket'
+
+	//JWT
+	implementation 'io.jsonwebtoken:jjwt-api:0.11.2'
+	implementation 'io.jsonwebtoken:jjwt-impl:0.11.2'
+	implementation 'io.jsonwebtoken:jjwt-jackson:0.11.2'
+
 }
 
 tasks.named('test') {
