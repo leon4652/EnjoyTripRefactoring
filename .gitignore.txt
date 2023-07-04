@@ -1,19 +1,7 @@
-/* gitignore 사용 예제입니다. 참고하세요. */
-# 일반적인 파일 및 폴더는 무시
-
-# myfolder 안의 파일은 무시하지 않음
-!myfolder/
-
-# myfolder 안의 특정 확장자 파일만 무시
-myfolder/*.txt
-myfolder/*.log
-
-/* */
 
 
 #node_module 무시
 FE/vue-project/node_modules/
 
 #application properties
-BE/Refactoring/src/main/resources/application.properties
-BE/Refactoring/src/main/resources/application
+application-sensitive.properties
