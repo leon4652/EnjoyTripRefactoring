@@ -24,3 +24,6 @@ login/register 구현 완료. 중복 확인, 제한 사항 확인 및 등록
 
 ~0703 : JWT 추가, Access, Refresh 발급 확인
 FE의 캐시(혹은 로컬 스토리지) 저장은 따로 되지 않음
+
+0711 : 공공데이터 날씨 API 추가
+url은 이상 없으나 WebClient 객체 사용해서 전송 시 오류 발생
