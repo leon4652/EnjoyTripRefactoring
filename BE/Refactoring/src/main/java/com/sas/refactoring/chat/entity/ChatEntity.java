@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor(access = AccessLevel.PROTECTED) //기본 생성자 자동 생성 X
 @Entity(name="chat_log") // 테이블 명을 작성
 public class ChatEntity {
+
     @Id @GeneratedValue
     private long uuid;
 
